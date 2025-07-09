@@ -57,7 +57,8 @@ canvas {
 
 .assets{
     display: none;
-}</style>       
+}
+</style>       
 
 
     <script>
@@ -421,11 +422,10 @@ window.addEventListener('load', function(){
     GAME.started = false;
 
     canvas.addEventListener('click', () => {
-        if (!GAME.started) {
-            GAME.started = true;
-        }
-        if(GAME.gameOver){
+        if (!GAME.started || GAME.gameOver) {
             resetGame();
+            GAME.started = true;
+            clearInterval(GAME.loop);
             GAME.loop = setInterval(animate, 300);
         }
     });
